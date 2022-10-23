@@ -1,0 +1,531 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    width: 100vw;
+
+    background-color: #F1F5F9;
+}
+
+::-webkit-scrollbar {
+    width: 8px;               /* width of the entire scrollbar */
+}
+  
+::-webkit-scrollbar-track {
+    background: #7fb2f500;        /* color of the tracking area */
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: #d5dbe4;    /* color of the scroll thumb */
+    border-radius: 6px;       /* roundness of the scroll thumb */
+    /* border: 1px solid orange;   */
+}
+
+p:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
+#LogoPage,
+.logoName{
+    /* font-size: clamp(1px, 4.8rem, 10vw); */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #0F172A;
+
+    /* text-align: right; */
+
+    /* margin-right: 8%;
+    margin-top: 1%; */
+}
+
+.buttonDetach{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+
+    color: #F1F5F9;
+    background-color: #0F172A;
+    border: 1px solid #0F172A;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.buttonDetach.Home{
+    font-size: clamp(1px, 3rem, 2vw);
+
+    transition: .2s;
+
+    width: 100%;
+
+    cursor: pointer;
+
+    padding: 1.3rem 1.6rem;
+}
+
+.buttonDetach.Home:hover{
+    color: #F1F5F9;
+    background-color: #1c2b4e;
+}
+
+/** Page Create New User **/
+ #ContainerUser{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+
+    margin: auto;
+    display: grid;
+    width: 80%;
+    
+    grid-template-columns: 40% 54%;
+
+    justify-content: space-between;
+}
+
+#ContainerUser #ContentUser .TitleForm{
+    font-size: clamp(1px, 3rem, 2vw);
+    text-align: center;
+
+    color: #0F172A;
+
+    margin: 5% 0px;
+    white-space: nowrap;
+}
+
+#ContainerUser #ContentUser .LabelForm{
+    font-size: clamp(1px, 2rem, 2vw);
+
+    color: #0F172A;
+}
+
+#ContainerUser #ContentUser form{
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;   
+}
+
+#ContainerUser #ContentUser input{
+    font-size: clamp(1px, 1.5rem, 2vw);
+
+    width: 100%;
+    
+    margin-bottom: 7%;
+
+    border: #0F172A 1px solid;
+    border-radius: 0px 6px 6px 6px;
+}
+
+#ContainerUser #ContentUser .buttonDetach.form,
+#IllustrationArea a{
+    font-size: clamp(1px, 2rem, 2vw);
+    border-radius: 6px;
+    
+    color: #F1F5F9;
+
+    margin-top: 5%;
+}
+
+#ContainerUser #ContentUser input,
+#IllustrationArea a{
+    padding: clamp(5px, .1rem, 2vw);
+}
+
+#ContainerUser #ContentUser .buttonDetach.form{
+    margin-bottom: 0px;
+}
+
+#ContainerUser #ContentUser .buttonDetach.form:hover,
+#IllustrationArea a:hover{
+    background-color: #F1F5F9;
+    color: #0F172A;
+}
+
+#IllustrationArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+#IllustrationArea .PersonIllustration,
+#IllustrationArea a{
+    align-self: center;
+    text-align: center;
+
+    width: 60%;
+}
+
+
+/** UserTasks **/
+
+/** Id in page UserTask **/
+#UserTasks{
+    display: grid;
+    grid-template-columns: 20% 70%;
+}
+
+#FirstCollumn{
+    border-right: 1px solid #0F172A;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#UserTasks #Tasks{
+    height: 45vh;
+    
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+#UserTasks #TasksInfoArea{
+    height: 40vh;
+
+    overflow: auto;
+}
+
+#UserTasks #TasksInfoArea:last-child{
+    margin-bottom: 500px;
+}
+
+#UserTasks .TaskName{
+    font-size: clamp(5px, 1.4rem, 1vw);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #0F172A;
+
+    line-height: 15%;
+
+    padding: 2% 0px 2% 10%;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+#UserTasks .TaskName:hover{
+    background-color: #E2E8F0;
+}
+
+#UserTasks #ButtonAdd{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: clamp(5px, 1.4rem, 1vw);
+
+    bottom: 0;
+    width: 100%;
+    padding: 2%;
+    margin-top: 2%;
+
+    color: white;
+    background-color: #408FFF;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+#UserTasks #ButtonAdd:hover{
+    background-color: #2880fc;
+}
+
+#Notification{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(5px, 1.4rem, 1vw);
+
+    border-top: 1px solid #0F172A;
+
+    overflow: auto;
+}
+
+#NotificationUser{
+    margin-left: 10%;
+}
+
+.DescriptionNotification{
+    margin: 5% 0px;
+    /* border-bottom: 1px solid #0F172A; */
+}
+
+.Separator{
+    width: 70%;
+    height: 2px;
+    margin: auto;
+    background-color: #0F172A;
+}
+
+.ButtonLogout{
+    font-size: clamp(5px, 1.4rem, 1vw);
+
+    display: block;
+
+    background-color: #FF5555;
+    color: white;
+
+    cursor: pointer;
+
+    width: 30%;
+    margin: 2% auto;
+    padding: 2%;
+
+    border-radius: 6px;
+
+    transition: .2s;
+}
+
+.ButtonLogout:hover{
+    background-color: #fd3737;
+}
+
+
+/** UserTask **/
+#UserTaskDetail{
+    padding-left: 8%;
+    padding-top: 4%;
+}
+
+#UserTaskHeader{
+    display: flex;
+
+    padding-bottom: 2%;
+}
+
+#TaskDeadline{
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: clamp(5px, 2rem, 2vw);
+
+    text-align: right;
+}
+
+
+#ProgressTask,
+#DescriptionTask,
+#TaskSteps{
+    font-family: 'Open Sans', sans-serif;
+    font-size: clamp(5px, 1.4rem, 3vh);
+    font-weight: 400;
+}
+
+#ProgressTask{
+    margin-left: 2%;
+    padding: 0.3%;
+    align-self: center;
+
+    border: 1px solid #07FE20;
+    border-radius: 8px;
+}
+
+#DescriptionTask{
+    padding-bottom: 3%;
+}
+
+#TaskSteps{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.TaskOption{
+    display: flex;
+}
+
+.TaskOption .TaskStepName{
+    margin-left: 1rem;
+}
+
+#CreateNewOptions{
+    width: 40vw;
+}
+
+#InputAddNewStep{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: clamp(5px, 1.4rem, 1vw);
+
+    width: 50%;
+    padding: 1%;
+
+    margin-top: 3%;
+
+    border-radius: 6px;
+
+    color: #0F172A;
+    background-color: #E2E8F0;
+
+    border-color: #94A3B8;
+
+    transition: .2s;
+
+    cursor: pointer;
+}
+
+#InputAddNewStep:hover{
+    background-color: #ccddf3;
+}
+
+#AddMoreOptions{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: clamp(5px, 1.4rem, 1vw);
+
+    width: 15%;
+    padding: 1%;
+
+    margin-left: 3%;
+
+    border-radius: 6px;
+
+    color: white;
+    background-color: #408FFF;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+#AddMoreOptions:hover{
+    background-color: #217bfa;
+}
+
+#CreateNewTask{
+    background-color: #F4F4F5;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size:  clamp(1px, 2rem, 1.2vw);
+
+    width: 80vw;
+    height: 80vh;
+    padding: 5%;
+
+    overflow: auto;
+
+    border-radius: 6px;
+    border-width: 2px 2px 1px 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.13);
+}
+
+#FormCreateNewTask{
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    
+    margin: auto;
+}
+
+#FormCreateNewTask .SectionTask{
+    display: grid;
+    grid-template-columns: 25% 50%;
+    margin-bottom: 5%;
+}
+
+#FormCreateNewTask .SectionTask input{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size:  clamp(1px, 2rem, 1.2vw);
+
+    border: 2px solid #1E293B;
+    border-radius: 0px 8px 8px 8px;
+
+    padding: 2%;
+    
+    width: 70%;
+    height: 70%;
+    
+    margin: auto;
+}
+
+#FormCreateNewTask .SectionTask #InputOption{
+    padding: 1%;
+}
+
+#FormCreateNewTask .SectionTask label{
+    align-self: center;
+}
+
+#ButtonCircleNegative{
+    margin-right: 20%;
+}
+
+#ButtonCircleNegative,
+#ButtonCirclePlus{
+    text-align: center;
+    cursor: pointer;
+
+    font-size: clamp(1px, 3.4rem, 2vw);
+}
+
+#CreateNewTask #Buttons button{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1px, 1.4rem, 1vw);
+
+    background-color: #FF5555;
+    color: white;
+
+    cursor: pointer;
+
+    width: 10%;
+   
+    padding: 1%;
+
+    border-radius: 6px;
+
+    transition: .2s;
+}
+
+#CreateNewTask #Buttons button:hover{
+    background-color: #fd3737;
+}
+
+#lastSection #InputOption{
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+@media (max-width: 650px){
+    #ContainerUser{
+        width: 70%;
+        grid-template-columns: 100%;
+    }
+
+   
+
+    #ContainerUser #ContentUser input{
+        margin-bottom: 7%;
+    }
+
+    #IllustrationArea .PersonIllustration{
+        display: none;
+    }
+
+    #IllustrationArea a{
+        width: 100%;
+
+        margin-top: 2%;
+    }
+} 
