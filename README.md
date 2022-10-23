@@ -23,6 +23,7 @@ A criação do layout foi pensada para que fosse o mais intuitivo e interativo c
 
 <br>
 <br>
+
 ## TypeScript
 Na criação de página e funções foi utilizado o a linguagem de programação TypeScript.
 
