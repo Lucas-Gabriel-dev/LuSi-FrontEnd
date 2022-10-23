@@ -27,6 +27,9 @@ A criação do layout foi pensada para que fosse o mais intuitivo e interativo c
 ## TypeScript
 Na criação de página e funções foi utilizado o a linguagem de programação TypeScript.
 
+<br>
+<br>
+
 # Layout 
 No início do desenvolvimento do layout ficou determinado que ele deveria possuir  características simples, objetivas e interativas. Todo o Layout inicial
 foi desenvolvido no Figma. Link para visualização: https://www.figma.com/file/dEBEFsSPDmDHI1gOuLOxmt/LuSi?node-id=0%3A1
