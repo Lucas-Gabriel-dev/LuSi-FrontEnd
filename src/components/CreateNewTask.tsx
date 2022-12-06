@@ -1,9 +1,10 @@
-import axios from "axios";
-import { useState } from "react";
+import { api } from "../lib/axios";
+
 import { useForm } from "react-hook-form";
 import Form from "./Form/Form";
-
-
+import { useState } from "react";
+import dayjs from 'dayjs';
+import ptBR from 'dayjs/locale/pt-br';
 
 type CreateNewTaskProps = {
     display: string
@@ -20,7 +21,6 @@ export function CreateNewTask(props: CreateNewTaskProps){
     
     const [formState, setFormState] = useState<string[]>([]);
     
-
     const [inputs, setInputs ] = useState<any>([
         <input 
             type="text" 
@@ -35,10 +35,7 @@ export function CreateNewTask(props: CreateNewTaskProps){
 
     const containerNewTask = document.getElementById("ContainerNewTaskTab")
 
-    let actualDate = new Date().getDate()
-    let actualMonth = new Date().getMonth()
-    let actualYear = new Date().getFullYear()
-    let formatDate = `${actualYear}-${actualMonth + 1}-${actualDate}`
+    const when = dayjs().locale(ptBR).format("YYYY[-]MM[-]DD");
 
     document.getElementById('ButtonAdd')?.addEventListener('click', () => {
         containerNewTask!.style.display = 'flex'
@@ -79,7 +76,7 @@ export function CreateNewTask(props: CreateNewTaskProps){
         console.log(list)
     }
 
-    const onSubmit = (data: any) =>{
+    const onSubmit = async (data: any) =>{
         let taskOptions: Array<IFormState> = [{
             name: ''
         }];
@@ -95,19 +92,19 @@ export function CreateNewTask(props: CreateNewTaskProps){
             taskOptions: taskOptions
         }
 
-        axios({
-            method: "post",
-            url: "https://localhost:7288/lusi/addtask",
-            headers: {Authorization: `Bearer ${localStorage.token}`},
-            data: user
-        }).then(function (response) {
-            location.replace(`/UserTask/${response.data.idTaks}`)
-        })
-          .catch(function (error) {
-            console.log(user);
-        });
-    }
+        try {
+            const response = await api.post("/lusi/addtask", 
+                user
+            )
 
+            if(response.status === 200)
+            {
+                location.replace(`/UserTask/${response.data.idTaks}`)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return(
         <div id="ContainerNewTaskTab"
@@ -130,7 +127,7 @@ export function CreateNewTask(props: CreateNewTaskProps){
                         </section>
                         <section className="SectionTask">
                             <label htmlFor="">Prazo para concluir:</label>
-                            <input type="date" min={formatDate}  {...register("deadline")} required/> 
+                            <input type="date" min={when}  {...register("deadline")} required/> 
                         </section>
                         <section className="SectionTask">
                             <label htmlFor="">Descrição da tarefa:</label>

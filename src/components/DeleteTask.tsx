@@ -1,23 +1,19 @@
-import axios from "axios";
+import { api } from "../lib/axios";
 
 const params = window.location.pathname.split("UserTask/")
 
-function DeleteActionTask()
+async function DeleteActionTask()
 {
-    axios({
-        method: "Delete",
-        url: `https://localhost:7288/lusi/DeleteTask/${params[1]}`,
-        headers: {Authorization: `Bearer ${localStorage.token}`},
-    }).then(function (response) {
-        location.replace("/UserTask/");
-    })
-    .catch(function (error) {
-        console.log(error)
-    });
-}
+    try {
+        const response = await api.delete(`/lusi/DeleteTask/${params[1]}`)
 
-type WarningDeleteMessageProps = {
-    display: string
+        if(response.status === 200)
+        {
+            location.replace("/UserTask/");
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export function WarningDeleteMessage(){

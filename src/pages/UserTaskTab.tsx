@@ -1,107 +1,41 @@
-import { useEffect, useState } from "react";
+import { AllTask } from "../api/AllTask";
+import { UserNotifications } from "../api/UserNotification";
+import { OcultTab } from "../components/OcultTab";
+import { Logout } from "../components/Logout";
+import { params } from "../lib/params";
+import { TypeGreeting } from "../components/TypeGreeting";
 
-type TaskProps = {
-    id: string;
-    title: string;
-    task_createdAt: Date;
-    deadline: Date;
-}
-
-type NotificationProps = {
-    description: string
-}
-
-type AllNotificationProps = {
-    name: string,
-    listNotification: Array<NotificationProps>
-}
-
-function Logout(){
-    localStorage.token = '';
-
-    window.location.replace("/")
-}
-
-const params = window.location.pathname.split("UserTask/")
+import "../styles/UserTaskTab.css";
 
 export function UserTaskTab(){
-    const [ taskUser, setTasksUser ] = useState<TaskProps[]>([]);
-    const [ userNotifications, setUserNotifications ] = useState<AllNotificationProps>();
-
     if(localStorage.token == ""){
         window.location.replace("/")
     }
 
-    useEffect(() => {
-        fetch(`https://localhost:7288/Lusi/AllTask`, {
-            headers: {Authorization: `Bearer ${localStorage.token}`},
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data[0]?.id)
-            if(data[0]?.id == null){
-                window.location.replace("/newuser")
-            }
+    const taskUser = AllTask();
+    const userNotifications = UserNotifications();
 
-            if(data[0]?.id != null && params[1] == "" || params[1] == null)
-            {
-                window.location.replace(`/UserTask/${data[0].id}`)
-            }
-
-            if(!data.error){
-                setTasksUser(data);
-            }
-        }).catch(function (error) {
-            if(error.response.status === 401){
-                window.location.replace("/login")
-            }
-        });    
-    }, [])
-
-    useEffect(() => {
-        fetch(`https://localhost:7288/Lusi/UserNotifications`, {
-            headers: {Authorization: `Bearer ${localStorage.token}`},
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(!data.error){
-                setUserNotifications(data);
-            }
-        }).catch(function (error) {
-            console.log(error)
-            if(error.response.status === 401){
-                window.location.replace("/login")
-            }
-        });    
-    }, [])
-
-    let actualDate = new Date().getHours()
-
-    let message;
-
-    if(actualDate >= 5 && actualDate <= 12)
-    {
-        message = "Bom dia ⛅"
-    }
-    if(actualDate >= 13 && actualDate <= 18)
-    {
-        message = "Boa tarde ☀"
-    }
-    if(actualDate >= 19 && actualDate <= 23)
-    {
-        message = "Boa noite 🌚"
-    }
-
-    if(actualDate >= 0 && actualDate <= 4)
-    {
-        message = "Boa madruga 🌕"
-    }
-
+    let message = TypeGreeting();
 
     return(
             <div id="FirstCollumn">
+                <span 
+                    className="material-symbols-outlined"
+                    id="ButtonMenu"
+                    style={{
+                        cursor: "pointer",
+                        textAlign: "end",
+                        padding: "2%",
+                        fontSize: "clamp(5px, 2.4rem, 3vw)"
+                    }}
+                    onClick={OcultTab}
+                >
+                    menu
+                </span>
+                
                 <header>
-                    <p className="logoName"
+                    <p 
+                        className="logoName"
                         style={{
                             textAlign: 'center',
                             fontSize: 'clamp(1px, 4.8rem, 3vw)',
@@ -109,12 +43,15 @@ export function UserTaskTab(){
                             padding: '5%',
                             marginBottom: '12%'
                         }}
-                    > LuSi </p>
+                    > 
+                        LuSi 
+                    </p>
                 </header>
 
                 <div id="Tasks">
                     <div id="TasksInfoArea">
-                        <p className="TitleTasks"
+                        <p 
+                            className="TitleTasks"
                             style={{
                                 fontSize: 'clamp(5px, 1.8rem, 2vw)',
                                 fontFamily: 'Poppins, sans-serif',
@@ -122,13 +59,23 @@ export function UserTaskTab(){
                                 marginLeft: '10%',
                                 marginBottom: '7%'
                             }}
-                        > Tarefas </p>
+                        > 
+                            Tarefas 
+                        </p>
 
                         {taskUser.map(repo => {
                             return(
                                 <div>
-                                    <a className="TaskName" href={repo.id}> 
-                                        <span className="material-symbols-outlined"
+                                    <a 
+                                        className="TaskName" 
+                                        href={repo.id}
+                                        style={{
+                                            backgroundColor: repo.id == params[1] ? "#d1d5db" : ""
+                                            
+                                        }}
+                                    > 
+                                        <span 
+                                            className="material-symbols-outlined"
                                             style={{
                                                 fontSize: 'clamp(5px, 1.4rem, 1vw)',
                                             }}
@@ -153,25 +100,48 @@ export function UserTaskTab(){
                             margin: '5% 0px',
                             textAlign: 'center'
                         }}
-                    >{message}, {userNotifications?.name}!</p>
-
-                
-                        <section id="NotificationUser">
-                            <p 
-                                style={{
-                                    marginBottom: '5%'
-                                }}
-                            > Notificações: </p>
-                            {userNotifications?.listNotification.map(repo => {
-                                return(
-                                    <>
-                                        <p className="DescriptionNotification"> {repo.description}</p>
-                                        <div className="Separator"></div>
-                                    </>
-                                )
-                            })}
-                        </section>
-                    
+                    >
+                        {message}, {userNotifications?.name}!
+                    </p>
+                    <section id="NotificationUser">
+                        <p 
+                            style={{
+                                marginBottom: '5%'
+                            }}
+                        > 
+                            Notificações: 
+                        </p>
+                        
+                        {userNotifications?.listNotification[0] 
+                            ? 
+                                userNotifications?.listNotification.map(repo => {
+                                    return(
+                                        <>
+                                            <p className="DescriptionNotification"> 
+                                                {repo.description}
+                                            </p>
+                                            <div className="Separator"></div>
+                                        </>
+                                    )
+                                })
+                            : 
+                                <>
+                                    <p>
+                                        Você não possui notificações!
+                                    </p>
+                                </>
+                        }
+                        {userNotifications?.listNotification.map(repo => {
+                            return(
+                                <>
+                                    <p className="DescriptionNotification"> 
+                                        {repo.description}
+                                    </p>
+                                    <div className="Separator"></div>
+                                </>
+                            )
+                        })}
+                    </section>
                     
                     <button className="ButtonLogout" onClick={Logout}>
                         Sair

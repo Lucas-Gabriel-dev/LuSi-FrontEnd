@@ -1,0 +1,1 @@
+export const params = window.location.pathname.split("UserTask/");

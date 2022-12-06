@@ -1,0 +1,153 @@
+#FirstCollumn{
+    border-right: 1px solid #0F172A;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    animation-duration: .8s;
+    transition: .8s;
+    animation-fill-mode: forwards;
+    /* overflow: auto; */
+}
+
+#ButtonMenu{
+    animation-duration: .8s;
+    transition: .8s;
+
+    animation-fill-mode: forwards;
+}
+
+#UserTasks #Tasks{
+    /* height: 45vh; */
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#UserTasks #TasksInfoArea{
+    height: 40vh;
+
+    overflow: auto;
+}
+
+#UserTasks #TasksInfoArea:last-child{
+    margin-bottom: 500px;
+}
+
+#UserTasks .TaskName{
+    font-size: clamp(5px, 1.4rem, 1vw);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #0F172A;
+
+    /* line-height: 15%; */
+
+    padding: 2% 0px 2% 10%;
+
+    display: block;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+
+#UserTasks .TaskName:hover{
+    background-color: #E2E8F0;
+}
+
+#UserTasks #ButtonAdd{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: clamp(5px, 1.4rem, 1vw);
+
+    display: block;
+    bottom: 0;
+    width: 100%;
+    padding: 2%;
+    margin-top: 2%;
+
+    color: white;
+    background-color: #408FFF;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+#UserTasks #ButtonAdd:hover{
+    background-color: #2880fc;
+}
+
+#Notification{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(5px, 1.4rem, 1vw);
+
+    border-top: 1px solid #0F172A;
+
+    overflow: auto;
+}
+
+#NotificationUser{
+    margin-left: 10%;
+    word-break: break-word;
+}
+
+.DescriptionNotification{
+    margin: 5% 0px;
+}
+
+.Separator{
+    width: 70%;
+    height: 2px;
+    margin: auto;
+    background-color: #0F172A;
+}
+
+.ButtonLogout{
+    font-size: clamp(5px, 1.4rem, 1vw);
+
+    display: block;
+
+    background-color: #FF5555;
+    color: white;
+
+    cursor: pointer;
+
+    width: 30%;
+    margin: 2% auto;
+    padding: 2%;
+
+    border-radius: 6px;
+
+    transition: .2s;
+}
+
+.ButtonLogout:hover{
+    background-color: #fd3737;
+}
+
+
+/* Animations */
+
+@keyframes alignButtonMenu{
+    0% {
+        transform: translateX(0%);
+    }
+     100% {
+        transform: translateX(+20%);
+    }  
+}
+
+@keyframes returnButtonMenuOriginalPosition{
+    0% {
+        transform: translateX(20%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}

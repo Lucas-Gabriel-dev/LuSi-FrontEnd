@@ -1,0 +1,106 @@
+#ContainerUser{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+
+    margin: auto;
+    display: grid;
+    width: 80%;
+    
+    grid-template-columns: 40% 54%;
+
+    justify-content: space-between;
+}
+
+#ContainerUser #ContentUser .TitleForm{
+    font-size: clamp(1px, 3rem, 2vw);
+    text-align: center;
+
+    color: #0F172A;
+
+    margin: 5% 0px;
+    white-space: nowrap;
+}
+
+#ContainerUser #ContentUser .LabelForm{
+    font-size: clamp(1px, 2rem, 2vw);
+
+    color: #0F172A;
+}
+
+#ContainerUser #ContentUser form{
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;   
+}
+
+#ContainerUser #ContentUser input{
+    font-size: clamp(1px, 1.5rem, 2vw);
+
+    width: 100%;
+    
+    margin-bottom: 7%;
+
+    border: #0F172A 1px solid;
+    border-radius: 0px 6px 6px 6px;
+}
+
+#ContainerUser #ContentUser .buttonDetach.form,
+#IllustrationArea a{
+    font-size: clamp(1px, 2rem, 2vw);
+    border-radius: 6px;
+    
+    color: #F1F5F9;
+
+    margin-top: 5%;
+}
+
+#ContainerUser #ContentUser input,
+#IllustrationArea a{
+    padding: clamp(5px, .1rem, 2vw);
+}
+
+#ContainerUser #ContentUser .buttonDetach.form{
+    margin-bottom: 0px;
+}
+
+#ContainerUser #ContentUser .buttonDetach.form:hover,
+#IllustrationArea a:hover{
+    background-color: #F1F5F9;
+    color: #0F172A;
+}
+
+#IllustrationArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+#IllustrationArea .PersonIllustration,
+#IllustrationArea a{
+    align-self: center;
+    text-align: center;
+
+    width: 60%;
+}
+
+@media (max-width: 650px){
+    #ContainerUser{
+        width: 70%;
+        grid-template-columns: 100%;
+    }
+
+    #ContainerUser #ContentUser input{
+        margin-bottom: 7%;
+    }
+
+    #IllustrationArea .PersonIllustration{
+        display: none;
+    }
+
+    #IllustrationArea a{
+        width: 100%;
+
+        margin-top: 2%;
+    }
+} 

@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useState } from "react";
+import { params } from "../lib/params";
+import { api } from "../lib/axios";
 import { useForm } from "react-hook-form";
 import Form from "./Form/Form";
 
@@ -24,8 +24,6 @@ interface ITask{
     title: string, 
     description: string
 }
-
-const params = window.location.pathname.split("UserTask/")
 
 export function EditTitleTask(newValue?: any)
 {
@@ -59,18 +57,15 @@ export function EditDescriptionTask(newValue?: any)
     EditInfoTask(newValues)
 }
 
-export function EditInfoTask(infoTask: ITask)
+export async function EditInfoTask(infoTask: ITask)
 {
-    axios({
-        method: "PATCH",
-        url: "https://localhost:7288/lusi/EditTask",
-        headers: {Authorization: `Bearer ${localStorage.token}`},
-        data: infoTask
-    }).then(function (response) {
-    })
-    .catch(function (error) {
+    try {
+        const response = await api.patch("/lusi/EditTask", 
+            infoTask
+        )
+    } catch (error) {
         console.log(error)
-    });
+    }
 }
 
 export function AlterStatusOptionTask(infoOption: TaskOptionsProps){
@@ -82,9 +77,11 @@ export function AlterStatusOptionTask(infoOption: TaskOptionsProps){
     }
 
     EditOptionsTask(infoOption);
+
+    location.reload();
 }
 
-export function EditOptionsTask(infoOption: TaskOptionsProps, optionName?: any){
+export async function EditOptionsTask(infoOption: TaskOptionsProps, optionName?: any){
     const user = [{
         id: infoOption.id,
         name: infoOption.name,
@@ -97,35 +94,34 @@ export function EditOptionsTask(infoOption: TaskOptionsProps, optionName?: any){
         user[0].name = optionName;
     }
 
-    axios({
-        method: "PATCH",
-        url: "https://localhost:7288/lusi/EditOptionsTask",
-        headers: {Authorization: `Bearer ${localStorage.token}`},
-        data: user
-    }).then(function (response) {
-    })
-    .catch(function (error) {
+    try {
+        const response = await api.patch("/lusi/EditOptionsTask", 
+            user
+        )
+    } catch (error) {
         console.log(error)
-    });
+    }
 }
 
 export function AddMoreOption()
 {
     const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data: any) =>{
+    const onSubmit = async (data: any) => {
         const options = [ data.nameOption ]
 
-        axios({
-            method: "post",
-            url: `https://localhost:7288/Lusi/addtaskoption?idTask=${params[1]}`,
-            headers: {Authorization: `Bearer ${localStorage.token}`},
-            data: options
-        }).then(function (response) {
-            location.reload();
-        })
-        .catch(function (error) {
-        });
+        try {
+            const response = await api.post(`/lusi/addtaskoption?idTask=${params[1]}`, 
+                options
+            )
+
+            if(response.status === 200)
+            {
+                location.reload();
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return(
@@ -136,7 +132,6 @@ export function AddMoreOption()
                     placeholder="Adicione uma nova etapa"
                     id="InputAddNewStep"
                     {...register("nameOption")}
-                    // onInput={e => AddMoreOption(e.currentTarget.value)}
                 />
                 <input type="submit" id="AddMoreOptions"  value={"Enviar"}/>
             </div>

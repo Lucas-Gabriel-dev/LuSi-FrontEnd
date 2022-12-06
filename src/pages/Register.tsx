@@ -1,38 +1,39 @@
-import axios from "axios";
-import PeopleReading from "/images/PeopleReading.svg";
 import { useForm } from "react-hook-form";
 import Form from "../components/Form/Form";
 import { Header } from "../components/Header";
+import { api } from "../lib/axios";
+import PeopleReading from "/images/PeopleReading.svg";
+
+import "../styles/LoginAndRegisterPage.css";
 
 export function Register(){
     const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data: any) =>{
+    const onSubmit = async (data: any) =>{
         const user = {
             name: data.name,
             email: data.email,
             password: data.password,
         }
 
-        axios({
-            method: "post",
-            url: "https://localhost:7288/user/createuser",
-            data: user
-        }).then(function (response) {
+        try {
+            const response = await api.post("/user/createuser", 
+                user
+            )
+
             localStorage.setItem('token', response.data.token)
+
             if(localStorage.token){
                 window.location.replace("/usertask")
             }
-          })
-          .catch(function (error) {
-            console.log(error)
-            if(error.response.data){
+        } catch (error) {
+            if(error){
                 var messageError = document.getElementById('MessageError')
                 messageError!.style.display = "block";
 
                 document.querySelector('#MessageError')!.innerHTML = "Esse email já existe!"
             }
-          });
+        }
     }
 
     return (
@@ -59,7 +60,6 @@ export function Register(){
                         <label className="LabelForm">Senha</label>
                         <input type="password" {...register("password")} required/>
 
-
                         <input type="submit" className="buttonDetach form" value="Cadastrar"/>
                     </Form>
                 </div>
@@ -70,7 +70,5 @@ export function Register(){
                 </div>
             </div>
         </div>
-
-        
     );
 }
